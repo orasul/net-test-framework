@@ -1,0 +1,22 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:tal="http://xml.zope.org/namespaces/tal">
+ <head>
+     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+     <title>Add host</title>
+ </head>
+   <body>
+<h1> You've added following host: </h1>
+<pre>
+${created}
+</pre>
+File created in <i>${cwd}</i>
+
+
+<h4> Ok? </h4>
+<a href="/">home</a>
+
+
+   </body>
+ </html>

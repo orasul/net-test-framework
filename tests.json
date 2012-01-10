@@ -1,0 +1,55 @@
+[
+    {
+        "id": "1",
+        "host": "router1",
+        "type": "routing_table",
+        "routing_table": {
+            "max_entries": 6
+        }
+    },
+    {
+        "id": "2",
+        "host": "router1",
+        "type": "routing_table",
+        "routing_table": {
+            "route_to_ip": {
+                "ip_address": "192.168.14.89",
+                "interface": "FastEthernet0/1"
+            }
+        }
+    },
+    {
+        "id": "3",
+        "host": "router1",
+        "type": "routing_table",
+        "routing_table": {
+            "route_to_ip": {
+                "ip_address": "172.18.66.0",
+                "existence": "True"
+            }
+        }
+    },
+    {
+        "id": "4",
+        "host": "router1",
+        "type": "interfaces",
+        "interfaces": {
+            "parameters": {
+                "interface_name": "FastEthernet0/1",
+                "ip_address": "192.168.12.201",
+                "netmask": "255.255.255.0"
+            }
+        }
+    },
+    {
+        "id": "5",
+        "host": "router1",
+        "type": "routing_table",
+        "routing_table": {
+            "route_to_ip": {
+                "ip_address": "192.168.1.17",
+                "type": "static"
+            }
+        }
+    }
+]

@@ -1,0 +1,7 @@
+{
+  "host": "router1", 
+  "type": "routing_table", 
+  "id": "1", 
+  "test_params": "6", 
+  "test_name": "max_entries"
+}

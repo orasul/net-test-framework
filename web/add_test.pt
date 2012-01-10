@@ -1,0 +1,77 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:tal="http://xml.zope.org/namespaces/tal">
+ <head>
+     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+     <title>Add Test</title>
+     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+     <script>
+        var code_obj =  ${code};
+        $(function() {
+          select_test($('#type').val());
+          $('#type').change( function() { select_test($(this).val()) } );
+        });
+
+        function select_test(name) {
+          $('#test_container').empty();
+          var el = $('.' + name).clone();
+          el.appendTo('#test_container');
+          el.attr("id",'test_type');
+          el.change( function() { select_test_name($(this).val()) } );
+          select_test_name(el.val());
+        }
+        function select_test_name(name) {
+          $('#code').text(code_obj[$('#type').val() + "_" + name]); 
+        }
+
+     </script>
+ </head>
+   <body>
+<h1> Please fill the form to add test: </h1>
+<table>
+<tr>
+<td style="width:400px">
+    <form action="/add_test_apply" method="GET">
+      id: <input type="text" name="id">
+<br>
+      Host: 
+      <select name="host">
+        <option tal:repeat="row hosts" value="${row}">${row}</option>
+      </select>
+<br>
+      Type: 
+      <select name="type" id="type">
+        <option value="routing_table">routing_table</option>
+        <option value="interfaces">interfaces</option>
+        <option value="service">service</option>
+      </select>
+      <br>Test name: 
+      <span id="test_container">
+      </span>
+<br> JSON parameters:
+<br>  <textarea name="test_params"></textarea>
+<br>  <input type="submit" value="Add test">
+      <input type="reset" value="Clear">
+    </form>
+</td>
+<td style="width:500px">
+  <pre id="code">
+  </pre>
+</td>
+</tr>
+</table>
+
+    <div style="visibility:hidden;" id="tests">
+      <select name="test_name" class="tests routing_table">
+        <option tal:repeat="row routing_table_tests" value="${row}">${row}</option>
+      </select>
+      <select name="test_name" class="tests interfaces">
+        <option tal:repeat="row interfaces_tests" value="${row}">${row}</option>
+      </select>
+      <select name="test_name" class="tests service">
+        <option tal:repeat="row service_tests" value="${row}">${row}</option>
+      </select>
+    </div>
+   </body>
+ </html>

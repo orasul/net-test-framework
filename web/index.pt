@@ -1,0 +1,50 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:tal="http://xml.zope.org/namespaces/tal">
+ <head>
+     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+     <title>Karkas control panel</title>
+ </head>
+   <body>
+
+<h2> Select your action </h2>
+<a href="/add_host">Add new host</a>
+<a href="/add_test">Add new test</a>
+<h2> Available hosts </h2>
+
+    <table >
+      <tr tal:repeat="row host_table " >
+        <td style="border:1px solid black; padding: 3px; margin: 0px;">
+           ${row} 
+        </td>
+        <td style="border:1px solid black; padding: 3px; margin: 0px;">
+           <a href="/edit_host?hostname=${row}">Edit</a> 
+        </td>
+        <td style="border:1px solid black; padding: 3px; margin: 0px;">
+           <a href="/delete_host?hostname=${row}">Delete</a> 
+        </td>
+      </tr>
+    </table>
+
+<br>
+<h2> Available tests </h2>
+
+    <table >
+      <tr tal:repeat="row2 test_table " >
+        <td style="border:1px solid black; padding: 3px; margin: 0px;">
+           ${row2} 
+        </td>
+        <td style="border:1px solid black; padding: 3px; margin: 0px;">
+           <a href="/edit_test?id=${row2}">Edit</a> 
+        </td>
+        <td style="border:1px solid black; padding: 3px; margin: 0px;">
+           <a href="/delete_test?id=${row2}">Delete</a> 
+        </td>
+      </tr>
+    </table>
+
+<a href="/run_tests">Run tests</a>
+
+   </body>
+ </html>

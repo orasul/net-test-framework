@@ -1,0 +1,8 @@
+{
+  "protocol": "ssh", 
+  "type": "router", 
+  "hostname": "router1", 
+  "login": "root", 
+  "password": "cisco", 
+  "os": "cisco"
+}

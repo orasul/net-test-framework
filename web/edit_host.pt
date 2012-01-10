@@ -1,0 +1,59 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:tal="http://xml.zope.org/namespaces/tal">
+ <head>
+     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+     <title>Edit host</title>
+     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+     <script>
+      $(function() {
+        $("select[name=type]").children().removeAttr('selected');
+        $("select[name=os]").children().removeAttr('selected');
+        $("select[name=protocol]").children().removeAttr('selected');
+        $("option[value=${type}]").attr('selected', 'selected');
+        $("option[value=${os}]").attr('selected', 'selected');
+        $("option[value=${protocol}]").attr('selected', 'selected');
+      });
+     </script>
+ </head>
+   <body>
+<h1> Please fill the form to add host: </h1>
+    <form action="/add_host_apply_delete" method="GET">
+      Hostname: <input type="text" name="hostname" value="${hostname}">
+<br>
+      Select node type: 
+      <select name="type">
+        <option value="router">Router</option>
+        <option value="switch">Switch</option>
+        <option value="host">Host</option>
+      </select>
+<br>
+      Select OS type: 
+      <select name="os">
+        <option value="cisco">Cisco</option>
+        <option value="linux">Linux</option>
+        <option value="windows">Windows</option>
+      </select>
+<br>
+      Select protocol: 
+      <select name="protocol">
+        <option value="ssh">ssh</option>
+        <option value="telnet">telnet</option>
+        <option value="snmp">snmp</option>
+      </select>
+<br>
+<br>
+      Credentials:
+<br>
+Username:
+      <input type="text" name="login" value="${login}">
+<br>
+Password:
+      <input type="password" name="password" value="${password}">
+<br>
+      <input type="submit" value="Edit host">
+      <input type="hidden" name="oldname" value="${hostname}">
+    </form>
+   </body>
+ </html>

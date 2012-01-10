@@ -1,0 +1,42 @@
+[
+    {
+        "hostname": "router1",
+        "type": "router",
+        "os": "cisco",
+        "protocol": "ssh",
+        "credentials": {
+            "login": "root",
+            "password": "cisco"
+        }
+    },
+    {
+        "hostname": "router2",
+        "type": "router",
+        "os": "cisco",
+        "protocol": "ssh",
+        "credentials": {
+            "login": "root",
+            "password": "cisco"
+        }
+    },
+    {
+        "hostname": "localhost",
+        "type": "host",
+        "os": "linux",
+        "protocol": "ssh",
+        "credentials": {
+            "login": "rasul",
+            "password": "password"
+        }
+    },
+    {
+        "hostname": "switch1",
+        "type": "switch",
+        "os": "cisco",
+        "protocol": "telnet",
+        "credentials": {
+            "login": "root",
+            "password": "cisco"
+        }
+    }
+]
