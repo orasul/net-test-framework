@@ -9,8 +9,10 @@
    <body>
 
 <h2> Select your action </h2>
-<a href="/add_host">Add new host</a>
-<a href="/add_test">Add new test</a>
+<ul>
+  <li><a href="/add_host">Add new host</a></li>
+  <li><a href="/add_test">Add new test</a></li>
+</ul>
 <h2> Available hosts </h2>
 
     <table >

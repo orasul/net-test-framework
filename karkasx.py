@@ -155,5 +155,7 @@ if __name__ == '__main__':
    config.add_route('run_tests', '/run_tests')
    config.add_view(run_tests, route_name='run_tests')
 
+   config.add_static_view(name='static', path=os.getcwd() + '/static')
+
    app = config.make_wsgi_app()
    serve(app, host='0.0.0.0')
