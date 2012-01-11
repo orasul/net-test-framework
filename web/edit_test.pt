@@ -4,21 +4,16 @@
        xmlns:tal="http://xml.zope.org/namespaces/tal">
  <head>
      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-     <title>Add Test</title>
+     <title>Edit Test</title>
      <script type="text/javascript" src="/static/jquery-1.7.1.min.js"></script>
-     <script>
-      $(function() {
-        $("select[name=host]").children().removeAttr('selected');
-        $("select[name=type]").children().removeAttr('selected');
-        $("select[name=test_name]").children().removeAttr('selected');
-        $("option[value=${host}]").attr('selected', 'selected');
-        $("option[value=${type}]").attr('selected', 'selected');
-        $("option[value=${test_name}]").attr('selected', 'selected');
-      });
-     </script>
      <script>
         var code_obj =  ${code};
         $(function() {
+
+          $("option[value=${host}]").attr('selected', 'selected');
+          $("option[value=${type}]").attr('selected', 'selected');
+          $("option[value=${test_name}]").attr('selected', 'selected');
+
           select_test($('#type').val());
           $('#type').change( function() { select_test($(this).val()) } );
         });
@@ -34,15 +29,16 @@
         function select_test_name(name) {
           $('#code').text(code_obj[$('#type').val() + "_" + name]); 
         }
+
      </script>
  </head>
    <body>
-<h1> Please fill the form to add test: </h1>
+<h1> Please change the form to edit the test test: </h1>
 <table>
 <tr>
 <td style="width:400px">
     <form action="/add_test_apply_delete" method="GET">
-      id: <input type="text" name="id" value=${id}>
+      id: <input type="text" name="id" value="${id}">
 <br>
       Host: 
       <select name="host">
@@ -50,19 +46,18 @@
       </select>
 <br>
       Type: 
-      <select name="type">
+      <select name="type" id="type">
         <option value="routing_table">routing_table</option>
         <option value="interfaces">interfaces</option>
         <option value="service">service</option>
       </select>
-<br>
       <br>Test name: 
       <span id="test_container">
       </span>
 <br> JSON parameters:
-<br>  <textarea name="test_params"></textarea>
-<br>  <input type="submit" value="Add test">
-      <input type="reset" value="Clear">
+<br>  <textarea name="test_params">${test_params}</textarea>
+<br>  <input type="submit" value="Edit test">
+      <input type="hidden" name="oldname" value="${id}">
     </form>
 </td>
 <td style="width:500px">
@@ -82,7 +77,6 @@
       <select name="test_name" class="tests service">
         <option tal:repeat="row service_tests" value="${row}">${row}</option>
       </select>
-      <input type="submit" value="Edit test">
-      <input type="hidden" name="oldname" value="${id}">
+    </div>
    </body>
  </html>

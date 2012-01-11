@@ -48,6 +48,11 @@ def edit_host(request):
 
 #tests actions
 def add_test_form(request):
+
+  return render_to_response(os.getcwd() + '/web/add_test.pt', build_test_form_dict(), request=request)
+
+def build_test_form_dict():
+
   l = [x[:-5] for x in os.listdir(os.getcwd() + '/hosts/') if x[-5:] == ".json"]
   code = '{"route_to_ip":"hello world","max_entries":"xxx"}'
 
@@ -55,12 +60,10 @@ def add_test_form(request):
   interfaces_tests = list_tests("interfaces");
   service_tests = list_tests("service");
 
-
   d = dict([("routing_table_" + key, get_comment("routing_table",key)) for key in routing_table_tests] + 
            [("interfaces_" + key, get_comment("interfaces",key)) for key in interfaces_tests] + 
            [("service_" + key, get_comment("service",key)) for key in service_tests])
-
-  return render_to_response(os.getcwd() + '/web/add_test.pt', {'hosts': l, "routing_table_tests": routing_table_tests, "interfaces_tests": interfaces_tests, "service_tests": service_tests, "code": json.dumps(d)}, request=request)
+  return {'hosts': l, "routing_table_tests": routing_table_tests, "interfaces_tests": interfaces_tests, "service_tests": service_tests, "code": json.dumps(d)}
 
 def list_tests(t):
   return [x[:-3] for x in os.listdir(os.getcwd() + "/" + t) if x[-3:] == ".py" and x != "__init__.py" ] 
@@ -104,7 +107,7 @@ def edit_test(request):
   json_dict = json.loads(f.read())
   f.close()
 
-  return render_to_response(os.getcwd() + '/web/edit_test.pt', json_dict, request=request)
+  return render_to_response(os.getcwd() + '/web/edit_test.pt', dict(json_dict.items() + build_test_form_dict().items()), request=request)
 
 def run_tests(request):
   from head import test_results,hosts,tests
