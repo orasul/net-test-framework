@@ -59,7 +59,7 @@
 <br>  <input type="radio" name="condition" value="True" class="condition"> True
 <br>  <input type="radio" name="condition" value="False" class="condition"> False
 <br> JSON parameters:
-<br>  <textarea name="test_params">${test_params}</textarea>
+<br>  <textarea rows="5" cols="40" name="test_params">${test_params}</textarea>
 <br>  <input type="submit" value="Edit test">
       <input type="hidden" name="oldname" value="${id}">
     </form>
