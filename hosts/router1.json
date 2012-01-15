@@ -1,5 +1,5 @@
 {
-  "protocol": "ssh", 
+  "protocol": "snmp", 
   "type": "router", 
   "hostname": "router1", 
   "login": "root", 

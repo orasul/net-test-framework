@@ -28,6 +28,9 @@ def getoutput(hostname,creds,cmd):
   ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
   login = creds["login"]
   password = creds["password"]
+  print "%s === %s" % (login, password)
+  print len(login)
+  print len(password)
   ssh.connect(hostname, username=login, password=password, timeout =  30)
   #terminal length 0 ; to disable paging 
   #ssh.exec_command("terminal length 0")

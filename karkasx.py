@@ -110,13 +110,14 @@ def edit_test(request):
   return render_to_response(os.getcwd() + '/web/edit_test.pt', dict(json_dict.items() + build_test_form_dict().items()), request=request)
 
 def run_tests(request):
-  from head import test_results,hosts,tests
+  from head import test_results,get_hosts,get_tests
+  tests=get_tests("tests/")
+  hosts=get_hosts("hosts/")
   test_res=test_results(hosts,tests)
   l=""
   for key in test_res.keys():
-    l=l+str(key)+"  :  "+str(test_res[key])+"\n"
+    l=l+str(key)+"  :  "+str(test_res[key])+"   "
 
-  del(test_results,hosts,tests)
   return render_to_response(os.getcwd() + '/web/run_tests.pt', { 'tests' : l }, request=request)
 
 if __name__ == '__main__':

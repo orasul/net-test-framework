@@ -1,23 +1,25 @@
 #!/usr/bin/env python
 
 from parser import load_json
+import os
+import ast
 
-if __name__=='__main__':
-  tests=load_json("tests.json")
-  hosts=load_json("hosts.json")
-else:
+def get_tests(directory):
   tests=[]
-  hosts=[]
-  import os
   for test_file in os.listdir("tests/"):
     tests.append(load_json("tests/"+test_file))
   for test in tests:
     tes_type=test['type']
     tes_name=test['test_name']
-    tes_params=test['test_params']
+    tes_params=ast.literal_eval(test['test_params'])
     test[tes_type]={tes_name:tes_params}
     del(test['test_name'])
     del(test['test_params'])
+  return tests
+
+
+def get_hosts(directory):
+  hosts=[]
   for host_file in os.listdir("hosts/"):
     hosts.append(load_json("hosts/"+host_file))
   for host in hosts:
@@ -26,7 +28,17 @@ else:
     host['credentials']={'login':hos_login,'password':hos_password}
     del(host['login'])
     del(host['password'])
+  return hosts
 
+if __name__=='__main__':
+  tests=load_json("tests.json")
+  hosts=load_json("hosts.json")
+else:
+  tests=get_tests("tests/")
+  hosts=get_hosts("hosts/")
+
+print tests
+print hosts
 
 result={}
   
@@ -55,6 +67,7 @@ def test_results(hosts,tests):
   #  exec('"result[id_number]="+test_type+"."+test_name+"("+hostname+","+test_params+")"')
     import_string = "from %s.%s import test_func" % ( test_type , test_name )
     exec import_string
+    print "result[%s]=%s.%s(%s,%s)" % (id_number, test_type, test_name, host, test_params)
     result[id_number]=test_func(host,test_params)
 
   return result
