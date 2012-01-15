@@ -107,6 +107,9 @@ def edit_test(request):
   json_dict = json.loads(f.read())
   f.close()
 
+  if (not 'condition' in json_dict):
+    json_dict['condition'] = True
+
   return render_to_response(os.getcwd() + '/web/edit_test.pt', dict(json_dict.items() + build_test_form_dict().items()), request=request)
 
 def run_tests(request):

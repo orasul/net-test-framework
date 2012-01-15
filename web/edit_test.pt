@@ -13,6 +13,7 @@
           $("option[value=${host}]").attr('selected', 'selected');
           $("option[value=${type}]").attr('selected', 'selected');
           $("option[value=${test_name}]").attr('selected', 'selected');
+          $("input.condition[value=${condition}]").attr('checked', 'checked');
 
           select_test($('#type').val());
           $('#type').change( function() { select_test($(this).val()) } );
@@ -54,6 +55,9 @@
       <br>Test name: 
       <span id="test_container">
       </span>
+<br>  Condition:
+<br>  <input type="radio" name="condition" value="True" class="condition"> True
+<br>  <input type="radio" name="condition" value="False" class="condition"> False
 <br> JSON parameters:
 <br>  <textarea name="test_params">${test_params}</textarea>
 <br>  <input type="submit" value="Edit test">

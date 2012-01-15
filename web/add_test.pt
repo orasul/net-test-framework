@@ -49,6 +49,9 @@
       <br>Test name: 
       <span id="test_container">
       </span>
+<br>  Condition: 
+<br>  <input type="radio" name="condition" value="True" checked> True
+<br>  <input type="radio" name="condition" value="False"> False
 <br> JSON parameters:
 <br>  <textarea name="test_params"></textarea>
 <br>  <input type="submit" value="Add test">
