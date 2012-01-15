@@ -1,5 +1,5 @@
 {
-  "test_params": "12", 
+  "test_params": "3", 
   "host": "router1", 
   "test_name": "max_entries", 
   "type": "routing_table", 

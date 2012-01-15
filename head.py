@@ -37,8 +37,6 @@ else:
   tests=get_tests("tests/")
   hosts=get_hosts("hosts/")
 
-print tests
-print hosts
 
 result={}
   
@@ -57,7 +55,6 @@ def test_results(hosts,tests):
   for test in tests:
     # Here should be called simple function from library
     # for example: result[test['id']]=routing_table.max_entries('router1',4)
-    print test
     test_type=test['type']
     test_name=test[test_type].keys()[0]
     test_params=test[test_type][test_name]
@@ -66,10 +63,14 @@ def test_results(hosts,tests):
     id_number=test['id']
   #  exec('"result[id_number]="+test_type+"."+test_name+"("+hostname+","+test_params+")"')
     import_string = "from %s.%s import test_func" % ( test_type , test_name )
-    exec import_string
-    print "result[%s]=%s.%s(%s,%s)" % (id_number, test_type, test_name, host, test_params)
-    result[id_number]=test_func(host,test_params)
-
+    try:
+      exec import_string
+    except:
+      result[id_number]="Specified test missing."
+    try:
+      result[id_number]=test_func(host,test_params)
+    except:
+      result[id_number]="Test parameters are bad or test is improperly designed"
   return result
 
 if __name__=='__main__':
