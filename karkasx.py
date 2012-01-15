@@ -119,7 +119,8 @@ def run_tests(request):
   test_res=test_results(hosts,tests)
   l=""
   for key in test_res.keys():
-    l=l+str(key)+"  :  "+str(test_res[key])+"     "
+    l= l + str(key) + ": "+str(test_res[key]) + "\n"
+
   return render_to_response(os.getcwd() + '/web/run_tests.pt', { 'tests' : l }, request=request)
 
 if __name__ == '__main__':

@@ -9,7 +9,7 @@
    <body>
 
 <h2> Test results: </h2>
-<i>${tests}</i>
+<pre style="padding-left:20px; font-style: italic; border: 1px solid #444444; color: darkred;">${tests}</pre>
 <h2> Available hosts </h2>
 
 
