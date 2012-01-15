@@ -3,7 +3,7 @@
         "hostname": "router1",
         "type": "router",
         "os": "cisco",
-        "protocol": "ssh",
+        "protocol": "snmp",
         "credentials": {
             "login": "root",
             "password": "cisco"
@@ -13,7 +13,7 @@
         "hostname": "router2",
         "type": "router",
         "os": "cisco",
-        "protocol": "ssh",
+        "protocol": "snmp",
         "credentials": {
             "login": "root",
             "password": "cisco"

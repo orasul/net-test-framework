@@ -3,15 +3,16 @@
 from parser import load_json
 import os
 import ast
+import re
 
 def get_tests(directory):
   tests=[]
-  for test_file in os.listdir("tests/"):
-    tests.append(load_json("tests/"+test_file))
+  for test_file in os.listdir(directory):
+    tests.append(load_json(directory+test_file))
   for test in tests:
     tes_type=test['type']
     tes_name=test['test_name']
-    tes_params=ast.literal_eval(test['test_params'])
+    tes_params=ast.literal_eval(re.sub('\r\n','',test['test_params']))
     test[tes_type]={tes_name:tes_params}
     del(test['test_name'])
     del(test['test_params'])
@@ -20,8 +21,8 @@ def get_tests(directory):
 
 def get_hosts(directory):
   hosts=[]
-  for host_file in os.listdir("hosts/"):
-    hosts.append(load_json("hosts/"+host_file))
+  for host_file in os.listdir(directory):
+    hosts.append(load_json(directory+host_file))
   for host in hosts:
     hos_login=host['login']
     hos_password=host['password']
@@ -61,6 +62,8 @@ def test_results(hosts,tests):
     hostname=test['host']
     host=hosts[hostnames.index(hostname)]
     id_number=test['id']
+    if not test.has_key('condition'):
+      test['condition']=True
   #  exec('"result[id_number]="+test_type+"."+test_name+"("+hostname+","+test_params+")"')
     import_string = "from %s.%s import test_func" % ( test_type , test_name )
     try:

@@ -15,7 +15,7 @@ def test_func(host,test_params):
     if i not in params.keys():
       return "Unknown parameter %s" % i
   if not is_number(test_params["netmask"]):
-    test_params["netmask"]=str(ifmask(ipconvert(test_params["netmask"])))
+    test_params["netmask"]=int(str(ifmask(ipconvert(test_params["netmask"]))))
   diff_len=100
   for line in IT:
     real_params=dict([(param,element) for param in params.keys() for element in line if params[param]==line.index(element)])

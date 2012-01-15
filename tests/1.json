@@ -3,5 +3,6 @@
   "host": "router1", 
   "test_name": "max_entries", 
   "type": "routing_table", 
-  "id": "1"
+  "id": "1", 
+  "condition": "True"
 }

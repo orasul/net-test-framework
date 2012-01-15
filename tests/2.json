@@ -1,0 +1,8 @@
+{
+  "test_params": "{\r\n                \"ip_address\":\"192.168.14.89\",\r\n                \"interface\": \"FastEthernet0/1\"\r\n}", 
+  "host": "router1", 
+  "test_name": "route_to_ip", 
+  "type": "routing_table", 
+  "id": "2", 
+  "condition": "True"
+}
