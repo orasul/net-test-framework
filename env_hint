@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+sudo apt-get install python-setuptools
+sudo apt-get install python-devel
+sudo easy_install virtualenv
+virtualenv --no-site-packages env
+./env/bin/easy_install pyramid
+./env/bin/easy_install pysnmp
+./env/bin/easy_install paramiko
+./env/bin/easy_install paste
+./env/bin/python karkasx.py
