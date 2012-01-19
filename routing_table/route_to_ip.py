@@ -16,6 +16,14 @@ def test_func(host,conditions_dict):
     conditions_dict["existence"]=conditions_dict["existence"].lower()
   RT=RouteTable(host)
   real_dict=route_to_ip_all_parametres(RT,conditions_dict['ip_address'])
+  if real_dict['existence']=='false':
+    if conditions_dict.has_key('existence'):
+      if conditions_dict['existence']=="false":
+        return True
+      else:
+        return "Route to specified address doesn't exist"
+    else:
+      return "Route to specified address doesn't exist"
   if conditions_dict.has_key('existence'):
     if real_dict['existence'] != conditions_dict['existence']:
       if real_dict['existence']:

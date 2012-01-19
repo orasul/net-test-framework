@@ -10,12 +10,10 @@
 
 <h2> Test results: </h2>
 <pre style="padding-left:20px; font-style: italic; border: 1px solid #444444; color: darkred;">${tests}</pre>
-<h2> Available hosts </h2>
 
 
 <h2> Select your action </h2>
 <a href="/">home</a>
-<h2> Available hosts </h2>
 
 
    </body>

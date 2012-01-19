@@ -13,6 +13,7 @@ def get_tests(directory):
     tes_type=test['type']
     tes_name=test['test_name']
     tes_params=ast.literal_eval(re.sub('\r\n','',test['test_params']))
+    tes_params=ast.literal_eval(re.sub('#','',test['test_params']))
     test[tes_type]={tes_name:tes_params}
     del(test['test_name'])
     del(test['test_params'])

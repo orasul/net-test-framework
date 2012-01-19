@@ -171,6 +171,9 @@ def get_interfaces(hostname,creds):
   result2=[i for i in result if len(i)==4]
   for res in result2:
     res.append("-")
+    assig=res[-1]
+    res[-1]=res[-2]
+    res[-2]=assig
   return result2
 
 def get_routing_table(hostname,creds):
