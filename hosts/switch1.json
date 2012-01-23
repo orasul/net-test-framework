@@ -1,8 +1,0 @@
-{
-  "protocol": "ssh", 
-  "type": "switch", 
-  "hostname": "switch1", 
-  "login": "root", 
-  "password": "cisco", 
-  "os": "cisco"
-}

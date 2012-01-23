@@ -1,8 +1,0 @@
-{
-  "protocol": "ssh", 
-  "type": "host", 
-  "hostname": "localhost", 
-  "login": "rasul", 
-  "password": "password", 
-  "os": "linux"
-}

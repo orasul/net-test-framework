@@ -143,6 +143,7 @@ def get_snmp_output(hostname,creds):
             snmp_result[to_man(name.prettyPrint())]=str(val.prettyPrint())
   return snmp_result
 
+
 def get_interfaces(hostname,creds):
   snmp_result=get_snmp_output(hostname,creds)
   result=[]
@@ -226,4 +227,57 @@ def get_routing_table(hostname,creds):
           route[4]=croute[4]
   return r_table
 
-print get_routing_table("router1",222)
+
+def get_route_dict(hostname,creds):
+  snmp_result=get_snmp_output(hostname,creds)
+  result={}
+  ifDescr={}
+  for key in snmp_result.keys():
+    if key[:7]=='ipRoute':
+      key_list=key.split()
+      if result.has_key(key_list[2]):
+        result[key_list[2]][key_list[0]]=snmp_result[key]
+      else:
+        result[key_list[2]]={key_list[0]:snmp_result[key]}
+    if key[:7]=='ifDescr':
+      key_list=key.split()
+      ifDescr[key_list[2]]=snmp_result[key]
+  for net in result.keys():
+    if result[net].has_key("ipRouteIfIndex"):
+      ifindex=result[net]["ipRouteIfIndex"]
+      if ifDescr.has_key(ifindex):
+        result[net]["ipRouteIfIndex"]=ifDescr[ifindex]
+      else:
+        del(result[net]["ipRouteIfIndex"])
+  return result
+
+def get_route_dict_brief(hostname,creds):
+  route_dict=get_route_dict(hostname,creds)
+  rd=route_dict
+  routing_protocols={'2':"L",'11':"EIGRP",'13':"OSPF",'14':"BGP",'8':"RIP",'9':"IS-IS"}
+  routing_protocols2={'3':"Connected",'4':"Static"}
+  rp=routing_protocols
+  rp2=routing_protocols2
+  result={}
+  for key in rd.keys():
+    result[key]={'netmask':rd[key]['ipRouteMask']}
+    if rd[key].has_key('ipRouteIfIndex'):
+      result[key]['interface']=rd[key]['ipRouteIfIndex']
+    if rd[key]['ipRouteProto']=='2':
+      result[key]['type']=rp2[rd[key]['ipRouteType']]
+    else:
+      if rp.has_key(rd[key]['ipRouteProto']):
+        result[key]['type']=rp[rd[key]['ipRouteProto']]
+    result[key]['next-hop']=rd[key]['ipRouteNextHop']
+  return result
+
+if __name__=="__main__":
+  ress=get_route_dict("router1",22)
+  for i in ress.keys():
+    print "%s == %s" % (i,ress[i])
+  ress=get_route_dict_brief("router1",22)
+  for i in ress.keys():
+    print "%s == %s" % (i,ress[i])
+
+
+
