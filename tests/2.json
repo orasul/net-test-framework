@@ -1,5 +1,5 @@
 {
-  "test_params": "{\r\n                \"ip_address\":\"192.168.14.89\",\r\n                \"interface\": \"FastEthernet0/1\"\r\n}", 
+  "test_params": "{\r\n                \"ip_address\":\"172.16.3.89\",\r\n                \"interface\": \"FastEthernet1/0\"\r\n}", 
   "host": "router1", 
   "test_name": "route_to_ip", 
   "type": "routing_table", 

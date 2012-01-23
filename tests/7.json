@@ -1,0 +1,8 @@
+{
+  "test_params": "{\"interface_name\":\"FastEthernet0/0\",\"ip_address\":\"192.168.12.204\",\r\n\"netmask\":\"255.255.255.0\",\"state\":\"UP\"}", 
+  "host": "router4", 
+  "test_name": "parameters", 
+  "type": "interfaces", 
+  "id": "7", 
+  "condition": "True"
+}

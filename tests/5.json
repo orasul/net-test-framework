@@ -1,8 +1,8 @@
 {
-  "test_params": "{\"ip_address\": \"192.168.1.17\",\"type\": \"connected\"}", 
-  "host": "router1", 
-  "test_name": "route_to_ip", 
-  "type": "routing_table", 
+  "test_params": "{\"ip_address\": \"192.168.12.202\",\"netmask\":\"255.255.255.0\"}", 
+  "host": "router2", 
+  "test_name": "parameters", 
+  "type": "interfaces", 
   "id": "5", 
   "condition": "True"
 }

@@ -1,8 +1,8 @@
 {
-  "test_params": "{\"ip_address\": \"172.18.66.0\",\"existence\": \"False\"}", 
-  "host": "router2", 
+  "test_params": "{\"ip_address\": \"172.16.3.4\"}", 
+  "host": "router4", 
   "test_name": "route_to_ip", 
   "type": "routing_table", 
   "id": "3", 
-  "condition": "False"
+  "condition": "True"
 }
